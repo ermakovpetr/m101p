@@ -53,8 +53,7 @@ class UserDAO:
 
         user = None
         try:
-            # XXX HW 2.3 Students Work Here
-            # you will need to retrieve right document from the users collection.
+            user = self.users.find_one({'_id': username})
             print "This space intentionally left blank."
         except:
             print "Unable to query database for user"
@@ -82,10 +81,7 @@ class UserDAO:
             user['email'] = email
 
         try:
-            # XXX HW 2.3 Students work here
-            # You need to insert the user into the users collection.
-            # Don't over think this one, it's a straight forward insert.
-
+            self.users.insert(user)
             print "This space intentionally left blank."
 
         except pymongo.errors.OperationFailure:
