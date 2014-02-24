@@ -54,7 +54,7 @@ class BlogPostDAO:
 
         # now insert the post
         try:
-            # XXX HW 3.2 Work Here to insert the post
+            self.posts.insert(post)
             print "Inserting the post"
         except:
             print "Error inserting post"
@@ -65,9 +65,7 @@ class BlogPostDAO:
     # returns an array of num_posts posts, reverse ordered
     def get_posts(self, num_posts):
 
-        cursor = []         # Placeholder so blog compiles before you make your changes
-
-        # XXX HW 3.2 Work here to get the posts
+        cursor = self.posts.find().limit(num_posts)
 
         l = []
 
@@ -90,8 +88,7 @@ class BlogPostDAO:
     # find a post corresponding to a particular permalink
     def get_post_by_permalink(self, permalink):
 
-        post = None
-        # XXX Work here to retrieve the specified post
+        post = self.posts.find_one({"permalink": permalink})
 
         if post is not None:
             # fix up date
